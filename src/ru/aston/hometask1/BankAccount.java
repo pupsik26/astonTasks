@@ -1,22 +1,30 @@
 package ru.aston.hometask1;
 
-class BankAccount {
-    private double balance;
+import java.math.BigDecimal;
 
-    public BankAccount(double balance) {
-        this.balance = balance;
+public class BankAccount {
+    private BigDecimal balance;
+
+    public BankAccount(final BigDecimal initialBalance) {
+        if (initialBalance == null) {
+            throw new IllegalArgumentException("Баланс равен null");
+        }
+        this.balance = initialBalance;
     }
 
-    public BankAccount(BankAccount other) {
-        this.balance = other.balance;
+    public static BankAccount copyOf(final BankAccount other) {
+        if (other == null) {
+            throw new IllegalArgumentException("Баланс равен null");
+        }
+        return new BankAccount(other.balance);
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void setBalance(final BigDecimal newBalance) {
+        this.balance = newBalance;
     }
 
     @Override

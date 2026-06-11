@@ -1,29 +1,21 @@
 package ru.aston.hometask1;
 
+import java.math.BigDecimal;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Создание объектов ===");
-        BankAccount myAccount = new BankAccount(1000.0);
-        Client client = new Client("Иван", myAccount);
+        final BigDecimal initialAmount = new BigDecimal("1000.50");
 
-        System.out.println("Исходное состояние клиента: " + client);
-        System.out.println("Исходное состояние myAccount: " + myAccount);
+        final BankAccount myAccount = new BankAccount(initialAmount);
+        final Client client = new Client("Иван", myAccount);
 
-        System.out.println("\n=== Попытка атаки №1: Изменение исходного объекта ===");
-        myAccount.setBalance(0.0); // "Злоумышленник" обнуляет исходный счет
-        System.out.println("myAccount после изменения: " + myAccount);
-        System.out.println("Клиент после изменения myAccount: " + client);
-        // Баланс клиента остался 1000.0, потому что мы сделали копию в конструкторе!
+        System.out.println("Исходное состояние: " + client);
 
-        System.out.println("\n=== Попытка атаки №2: Изменение через геттер ===");
-        BankAccount exposedAccount = client.getAccount(); // Получаем "якобы" внутренний счет
-        exposedAccount.setBalance(0.0); // Пытаемся его обнулить
+        myAccount.setBalance(new BigDecimal("0.00"));
+        System.out.println("После изменения myAccount: " + client);
 
-        System.out.println("exposedAccount после изменения: " + exposedAccount);
-        System.out.println("Клиент после изменения exposedAccount: " + client);
-        // Баланс клиента всё равно остался 1000.0, потому что геттер вернул копию!
-
-        System.out.println("\n=== ИТОГ ===");
-        System.out.println("Класс HomeTask1.Client является полностью иммутабельным и защищенным.");
+        final BankAccount exposedAccount = client.getAccount();
+        exposedAccount.setBalance(new BigDecimal("999999.00"));
+        System.out.println("После изменения exposedAccount: " + client);
     }
 }
