@@ -1,4 +1,4 @@
-package HomeTask1;
+package ru.aston.hometask1;
 
 import java.math.BigDecimal;
 
