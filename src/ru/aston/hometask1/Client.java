@@ -1,4 +1,4 @@
-package HomeTask1;
+package ru.aston.hometask1;
 
 final class Client {
     private final String name;

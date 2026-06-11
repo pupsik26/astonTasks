@@ -1,4 +1,4 @@
-package HomeTask1;
+package ru.aston.hometask1;
 
 class BankAccount {
     private double balance;
