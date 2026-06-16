@@ -10,18 +10,14 @@ public class Main {
     public static void main(String[] args) {
         String fileName = "students_data.txt";
 
-        // 1. Создаем тестовый файл
         createSampleFile(fileName);
 
         try {
-            // 2. Читаем файл и заполняем List<Student>
             List<Student> students = Files.lines(Paths.get(fileName))
                     .map(line -> {
-                        // Разделяем строку на имя студента и строку с книгами
                         String[] parts = line.split("\\|");
                         String studentName = parts[0];
 
-                        // Разделяем книги по точке с запятой, а затем каждую книгу по запятой
                         List<Book> books = Arrays.stream(parts[1].split(";"))
                                 .map(bookData -> {
                                     String[] book = bookData.split(",");
@@ -41,25 +37,15 @@ public class Main {
             System.out.println("--- Успешно загружено студентов: " + students.size() + " ---\n");
 
             students.stream()
-                    // 1. Вывести каждого студента (использует переопределенный toString)
                     .peek(System.out::println)
-                    // 2. Получить для каждого студента список книг (Stream<List<Book>>)
                     .map(Student::getBooks)
-                    // 3. Получить книги (превращаем Stream<List<Book>> в Stream<Book>)
                     .flatMap(List::stream)
-                    // 4. Отсортировать книги по количеству страниц
                     .sorted(Comparator.comparingInt(Book::getPages))
-                    // 5. Оставить только уникальные книги (требует equals/hashCode в Book)
                     .distinct()
-                    // 6. Отфильтровать книги, выпущенные после 2000 года
                     .filter(book -> book.getYear() > 2000)
-                    // 7. Ограничить стрим на 3 элементах
                     .limit(3)
-                    // 8. Получить из книг годы выпуска (Stream<Integer>)
                     .map(Book::getYear)
-                    // 9. Метод короткого замыкания: вернуть Optional от года
                     .findFirst()
-                    // 10. Вывести год или сообщение об отсутствии
                     .ifPresentOrElse(
                             year -> System.out.println("\n✅ Найденный год выпуска книги: " + year),
                             () -> System.out.println("\n❌ Такая книга отсутствует")
@@ -70,7 +56,6 @@ public class Main {
         }
     }
 
-    // Вспомогательный метод для создания файла с данными (минимум 5 книг у каждого)
     private static void createSampleFile(String fileName) {
         String data = """
                 Иван Иванов|Java Basics,John Doe,1999,400;Clean Code,Robert Martin,2008,450;Effective Java,Joshua Bloch,2018,400;Head First Java,Kathy Sierra,2005,600;Thinking in Java,Bruce Eckel,2006,1100
