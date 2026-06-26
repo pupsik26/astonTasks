@@ -31,7 +31,6 @@ public record HttpRequest(
         private int timeoutMs = 5000;
         private boolean followRedirects = true;
 
-        // Конструктор принимает ТОЛЬКО обязательные параметры
         public Builder(String url) {
             if (url == null || url.isBlank()) {
                 throw new IllegalArgumentException("URL не может быть пустым");
@@ -94,7 +93,6 @@ public record HttpRequest(
         }
     }
 
-    // Удобные методы для вывода
     @Override
     public String toString() {
         return String.format(
