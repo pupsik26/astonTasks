@@ -1,4 +1,4 @@
-package ru.aston.decorator;
+package ru.aston.hometask3.decorator;
 
 import java.util.ArrayList;
 import java.util.List;

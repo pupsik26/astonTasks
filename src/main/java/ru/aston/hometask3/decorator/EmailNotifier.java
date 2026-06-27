@@ -1,4 +1,4 @@
-package ru.aston.decorator;
+package ru.aston.hometask3.decorator;
 
 final class EmailNotifier implements Notifier {
     private final String email;

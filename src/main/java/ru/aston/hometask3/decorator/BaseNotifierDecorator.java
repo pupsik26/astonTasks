@@ -1,4 +1,4 @@
-package ru.aston.decorator;
+package ru.aston.hometask3.decorator;
 
 sealed abstract class BaseNotifierDecorator implements Notifier
         permits LoggingDecorator, RetryDecorator, SmsBackupDecorator {

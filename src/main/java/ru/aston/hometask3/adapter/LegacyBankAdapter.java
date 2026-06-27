@@ -1,4 +1,4 @@
-package ru.aston.adapter;
+package ru.aston.hometask3.adapter;
 
 public final class LegacyBankAdapter implements PaymentProcessor {
     private final LegacyBankApi legacyApi;

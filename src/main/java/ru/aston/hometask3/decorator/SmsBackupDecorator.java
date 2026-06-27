@@ -1,4 +1,4 @@
-package ru.aston.decorator;
+package ru.aston.hometask3.decorator;
 
 final class SmsBackupDecorator extends BaseNotifierDecorator {
     private final String phoneNumber;

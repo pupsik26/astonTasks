@@ -1,4 +1,4 @@
-package ru.aston.adapter;
+package ru.aston.hometask3.adapter;
 
 public class PaymentService {
     private final PaymentProcessor processor;

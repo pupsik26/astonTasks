@@ -1,4 +1,4 @@
-package ru.aston.adapter;
+package ru.aston.hometask3.adapter;
 
 public class OldPaymentGateway {
     public String executeTransaction(String merchantId, double amountUsd, String description) {
